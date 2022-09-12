@@ -195,7 +195,8 @@ public class Mensa extends RESTService {
       rating1.put("comment", "Delicious!"); 
       ratings.add(rating1); 
       JSONObject rating2 = new JSONObject(); 
-      rating2.put("comment", "Very good");
+      rating2.put("comment", "Very good"); 
+      ratings.add(rating2);
 
       
 
