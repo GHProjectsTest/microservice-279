@@ -132,17 +132,17 @@ public class MensaTest {
       ClientResponse result = c.sendRequest("GET", "/dishes/{id}/ratings", """
 """, "text/plain", "*/*", new HashMap<>(), "1");
       System.out.println("Result of request with id: 910581: " + result.getResponse().trim());
-    
-      Assert.assertEquals("[514226]", 200, result.getHttpCode());
-  Object response = JSONValue.parse(result.getResponse().trim());
-      // Response body has type JSON Array
-      assertThat("[753335]", response, isA(JSONArray.class));
-      
+      Object response = JSONValue.parse(result.getResponse().trim());
       // Response body all list entries has type JSON Object
       assertThat("[207052]", response, both(isA(JSONArray.class)).and(asJSONObjectList(everyItem(isA(JSONObject.class)))));
       
       // Response body all list entries has field "stars"
       assertThat("[220060]", response, both(isA(JSONArray.class)).and(asJSONObjectList(everyItem(both(isA(JSONObject.class)).and(asJSONObject(hasField("stars")))))));
+      
+
+      Assert.assertEquals("[514226]", 200, result.getHttpCode());
+      // Response body has type JSON Array
+      assertThat("[753335]", response, isA(JSONArray.class));
       
 
     } catch (Exception e) {
