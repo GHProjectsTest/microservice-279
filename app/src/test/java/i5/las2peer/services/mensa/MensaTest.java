@@ -116,6 +116,68 @@ public class MensaTest {
   }
 
 
+  /**
+   * 
+   * Test for the Listdishratingstest_ID761953 method.
+   * 
+   */
+  @Test
+  public void testListdishratingstest_ID761953() {
+    MiniClientCoverage c = new MiniClientCoverage(mainPath);
+    c.setConnectorEndpoint(connector.getHttpEndpoint());
+    
+        
+    try {
+      c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
+      ClientResponse result = c.sendRequest("GET", "/dishes/{id}/ratings", """
+""", "text/plain", "*/*", new HashMap<>(), "1");
+      System.out.println("Result of request with id: 910581: " + result.getResponse().trim());
+    
+      Assert.assertEquals("[514226]", 200, result.getHttpCode());
+  Object response = JSONValue.parse(result.getResponse().trim());
+      // Response body has type JSON Array
+      assertThat("[753335]", response, isA(JSONArray.class));
+      
+      // Response body all list entries has type JSON Object
+      assertThat("[207052]", response, both(isA(JSONArray.class)).and(asJSONObjectList(everyItem(isA(JSONObject.class)))));
+      
+      // Response body all list entries has field "stars"
+      assertThat("[220060]", response, both(isA(JSONArray.class)).and(asJSONObjectList(everyItem(both(isA(JSONObject.class)).and(asJSONObject(hasField("stars")))))));
+      
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exception: " + e);
+    }
+
+    
+  }
+  /**
+   * 
+   * Test for the GETdishesidratingsnotfoundtest_ID992335 method.
+   * 
+   */
+  @Test
+  public void testGETdishesidratingsnotfoundtest_ID992335() {
+    MiniClientCoverage c = new MiniClientCoverage(mainPath);
+    c.setConnectorEndpoint(connector.getHttpEndpoint());
+    
+        
+    try {
+      c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
+      ClientResponse result = c.sendRequest("GET", "/dishes/{id}/ratings", """
+""", "text/plain", "*/*", new HashMap<>(), "99999");
+      System.out.println("Result of request with id: 849280: " + result.getResponse().trim());
+    
+      Assert.assertEquals("[52193]", 404, result.getHttpCode());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exception: " + e);
+    }
+
+    
+  }
 
 
 
