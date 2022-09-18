@@ -144,7 +144,7 @@ public class Mensa extends RESTService {
 
   /**
    * 
-   * postdishratings
+   * postDishRatings
    *
    * 
    * @param id  a String
@@ -163,8 +163,8 @@ public class Mensa extends RESTService {
        @ApiResponse(code = HttpURLConnection.HTTP_CREATED, message = "created"),
        @ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "badreq")
   })
-  @ApiOperation(value = "postdishratings", notes = " ")
-  public Response postdishratings(@PathParam("id") String id, String body) {
+  @ApiOperation(value = "postDishRatings", notes = " ")
+  public Response postDishRatings(@PathParam("id") String id, String body) {
    classes.DishRating payloadbodyObject = new classes().new DishRating();
    try { 
        payloadbodyObject.fromJSON(body);
